@@ -1,5 +1,4 @@
-import requests
-import os
+import requests,os
 def main():
 		os.system('clear')
 		print('\033[1;30;m                          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
@@ -21,21 +20,19 @@ def main():
 		if len(cep) != 8:
 			print('\033[1;33mQuantidade de digitos invalida!\033[m')
 			exit()
+			
+		data = requests.get('https://viacep.com.br/ws/{}/json/'.format(cep)).json()
 		
-		r = requests.get('https://viacep.com.br/ws/{}/json/'.format(cep))
-		
-		data = r.json()
-		
-		print('')
-		print('\033[1;31mResultados: \033[m')
-		print('')
-		print('\033[1;34mCep:\033[m \033[1;36m{}\033[m'.format(data['cep']))
-		print('\033[1;34mLogradouro:\033[m \033[1;36m{}\033[m' .format(data['logradouro']))
-		print('\033[1;34mComplemento:\033[m \033[1;36m{}\033[m'.format(data['complemento']))
-		print('\033[1;34mBairro:\033[m \033[1;36m{}\033[m'.format(data['bairro']))
-		print('\033[1;34mLocalidade:\033[m \033[1;36m{}\033[m'.format(data['localidade']))
-		print('\033[1;34mEstado:\033[m \033[1;36m{}\033[m'.format(data['uf']))
-		print('')
+		print(f"""
+\033[1;31mResultados: \033[m'
+
+\033[1;34mCep:\033[m \033[1;36m{data['cep']}\033[m
+\033[1;34mLogradouro:\033[m \033[1;36m{data['logradouro']}\033[m
+\033[1;34mComplemento:\033[m \033[1;36m{data['complemento']}\033[m
+\033[1;34mBairro:\033[m \033[1;36m{data['bairro']}\033[m
+\033[1;34mLocalidade:\033[m \033[1;36m{data['localidade']}\033[m
+\033[1;34mEstado:\033[m \033[1;36m{data['uf']}\033[m
+		""")
 		opção = int(input('\033[7;35;97mDeseja realizar uma nova consulta? \033[m\n\n\033[1;30m[ 1 ]\033[m \033[1;97mSim\n\033[1;30m[ 2 ]\033[m \033[1;97mSair\n\n\033[1;31mR:\033[m\033[1;33m '))
 		print('\033[m')
 		os.system('clear')
