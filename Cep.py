@@ -1,5 +1,4 @@
-import requests
-import os
+import requests,os
 def main():
 		os.system('clear')
 		print('\033[1;30;m                          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━')
